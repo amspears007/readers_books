@@ -15,9 +15,10 @@ require 'rails_helper'
     describe "US3 As a visitor When I visit '/child_table_name' " do
       it " I see each book in the system including the book's attributes" do
         visit "/books"
+        save_and_open_page
 
 
-          within("book-info-#{plum_creek.id}") do
+          within("#book-info-#{plum_creek.id}") do
         expect(page).to have_content(plum_creek.title)
         expect(page).to have_content(plum_creek.author)
         expect(page).to have_content(plum_creek.genre)

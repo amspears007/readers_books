@@ -1,0 +1,12 @@
+<h1>Books Index Page </h1>
+
+<% @books.each do |book| %>
+<div id="book-info-<%=book.id%>">
+  <h3> Title: <%= book.title %></h3>
+  <p> Author: <%= book.author %></p>
+  <li> Genre: <%= book.genre %></li>
+  <li> Year Written: <%= book.year_written %></li>
+  <li> Fiction: <%= book.fiction %></li>
+  
+</div>
+<% end %>

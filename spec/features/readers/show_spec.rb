@@ -23,6 +23,8 @@ require 'rails_helper'
         within("#reader-#{amy.id}") do
           expect(page).to have_content("Age: #{amy.age}")
           expect(page).to have_content("Avid Reader: #{amy.avid_reader}")
+          expect(page).to_not have_content("Age: #{todd.age}")
+
           end
         end
       end

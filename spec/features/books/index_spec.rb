@@ -15,7 +15,6 @@ require 'rails_helper'
     describe "US3 As a visitor When I visit '/child_table_name' " do
       it " I see each book in the system including the book's attributes" do
         visit "/books"
-        save_and_open_page
 
         within("h1") do
           expect(page).to have_content("Books Index Page")

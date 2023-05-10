@@ -14,7 +14,6 @@ require 'rails_helper'
     describe "US1 When I visit '/readers' " do
       it "Then I see the name of each parent record in the system" do
         visit "/readers"
-        save_and_open_page
 
         within("h3") do
           expect(page).to have_content("Reader Index Page") 

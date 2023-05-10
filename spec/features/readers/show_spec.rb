@@ -21,6 +21,7 @@ require 'rails_helper'
         expect(page).to have_content("Age: #{amy.age}")
         expect(page).to have_content("Avid_Reader: #{amy.avid_reader}")
         expect(page).to have_content("ID#: #{amy.id}")
+        end
       end
     end
     

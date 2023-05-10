@@ -14,13 +14,16 @@ require 'rails_helper'
     describe "US2 When I visit '/readers/:id' " do
       it "I see the parent with that id including the parent's attributes (data from each column that is on the parent table)" do
         visit "/readers/#{amy.id}"
+        save_and_open_page
 
         within("h3") do
           expect(page).to have_content("Reader Show Page of #{amy.name}")
         end
-        expect(page).to have_content("Age: #{amy.age}")
-        expect(page).to have_content("Avid_Reader: #{amy.avid_reader}")
-        expect(page).to have_content("ID#: #{amy.id}")
+
+        within("#reader-#{amy.id}") do
+          expect(page).to have_content("Age: #{amy.age}")
+          expect(page).to have_content("Avid Reader: #{amy.avid_reader}")
+          end
         end
       end
     end

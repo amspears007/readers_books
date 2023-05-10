@@ -4,6 +4,6 @@ class ReadersController < ApplicationController
   end
 
   def show
-    
+    @reader = Reader.find(params[:id])
   end
 end

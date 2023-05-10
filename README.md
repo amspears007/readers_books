@@ -5,7 +5,7 @@
  ### User Stories
  ### ITERATION 1
 
-[ ] done
+[x] done
 
 User Story 1, Parent Index 
 

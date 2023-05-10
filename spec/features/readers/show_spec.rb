@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  RSpec.describe 'Parent Index', type: :feature do
+  RSpec.describe 'Parent Show', type: :feature do
     let!(:amy) {Reader.create!(name: "Amy Spears", age:40, avid_reader: false)}
     let!(:todd) {Reader.create!(name: "Todd Van Wiel", age:45, avid_reader: true)}
     let!(:penny) {Reader.create!(name: "Penny Van Wiel", age:8, avid_reader: false)}
@@ -11,19 +11,20 @@ require 'rails_helper'
     let!(:deep_work) {amy.books.create!(title: "Deep Work", author:"Cal Newport", genre: "self help", year_written: 2016, fiction: false)}
     let!(:metal) {todd.books.create!(title: "The Lost Metal", author:"Brandon Sanderson", genre: "fantasy", year_written: 2022, fiction: true)}
 
-    describe "US1 When I visit '/readers' " do
-      it "Then I see the name of each parent record in the system" do
-        visit "/readers"
+    describe "US2 When I visit '/readers/:id' " do
+      it "I see the parent with that id including the parent's attributes (data from each column that is on the parent table)" do
+        visit "/readers/#{amy.id}"
+        save_and_open_page
 
         within("h3") do
-          expect(page).to have_content("Reader Index Page") 
+          expect(page).to have_content("Reader Show Page of #{amy.name}")
         end
-        expect(page).to have_content("Amy Spears") 
-        expect(page).to have_content("Todd Van Wiel") 
 
-        expect(page).to have_content("#{todd.name}") 
-        expect(page).to have_content("#{penny.name}") 
-      
+        within("#reader-#{amy.id}") do
+          expect(page).to have_content("Age: #{amy.age}")
+          expect(page).to have_content("Avid Reader: #{amy.avid_reader}")
+          end
+        end
+      end
     end
-  end
-end
+    

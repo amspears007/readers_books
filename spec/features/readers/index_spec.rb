@@ -16,7 +16,7 @@ require 'rails_helper'
         visit "/readers"
         save_and_open_page
 
-        within("h1") do
+        within("h3") do
           expect(page).to have_content("Reader Index Page") 
         end
         expect(page).to have_content("Amy Spears") 

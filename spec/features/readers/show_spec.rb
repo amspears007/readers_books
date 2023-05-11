@@ -5,7 +5,6 @@ require 'rails_helper'
     let!(:todd) {Reader.create!(name: "Todd Van Wiel", age:45, avid_reader: true)}
     let!(:penny) {Reader.create!(name: "Penny Van Wiel", age:8, avid_reader: false)}
 
-
     let!(:plum_creek) {amy.books.create!(title: "On the Banks of Plum Creek", author:"Laura Ingalls Wilder", genre: "children's historical novels", year_written: 1937, fiction: true)}
     let!(:gone) {amy.books.create!(title: "Then She was Gone", author:"Lisa Jewell", genre: "thriller", year_written: 2017, fiction: true)}
     let!(:deep_work) {amy.books.create!(title: "Deep Work", author:"Cal Newport", genre: "self help", year_written: 2016, fiction: false)}
@@ -27,6 +26,14 @@ require 'rails_helper'
 
           end
         end
+
+      describe "US7 When Parent Child Count" do
+        it "I see a count of the number of children associated with this parent" do
+          visit "/readers/#{amy.id}"
+
+          expect(page).to have_content("Number of Books: 3")
       end
     end
+  end
+end
     

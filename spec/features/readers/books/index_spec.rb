@@ -16,7 +16,10 @@ require 'rails_helper'
     it "I see each book that is associated with that reader with each book's attributes" do
       visit "/readers/#{amy.id}/books"
 save_and_open_page
-      # within("#reader-#{amy.id}") do
+      within("h1") do
+        expect(page).to have_content("#{amy.name}'s Most Recent Books")
+      end
+       within("#reader-#{amy.id}") do
         expect(page).to have_content(plum_creek.title)
         expect(page).to have_content(plum_creek.author)
         expect(page).to have_content(plum_creek.genre)
@@ -26,7 +29,7 @@ save_and_open_page
         expect(page).to have_content(gone.genre)
         expect(page).to_not have_content(metal.title)
         expect(page).to_not have_content(penguins.title)
-      # end        
+       end        
       end
     end
   end

@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   get "/books", to: "books#index"
   get "/books/:id", to: "books#show"
 
-  get "/readers/:reader_id/books", to: "readers/books#index"
+  get "/readers/:reader_id/books", to: "reader_books#index"
 end

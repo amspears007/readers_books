@@ -32,7 +32,7 @@ When I visit '/child_table_name'
 Then I see each Child in the system including the Child's attributes
 (data from each column that is on the child table)
 
-[ ] done
+[x] done
 
 User Story 4, Child Show 
 

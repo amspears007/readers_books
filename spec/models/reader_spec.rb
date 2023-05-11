@@ -29,7 +29,7 @@ RSpec.describe Reader, type: :model do
       
         expect(amy.book_count).to eq(3)
         expect(penny.book_count).to eq(1)
-
+        expect(vivian.book_count).to eq(0)
       end
     end
   end

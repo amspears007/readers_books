@@ -7,5 +7,6 @@ class ReadersController < ApplicationController
 
   def show
     @reader = Reader.find(params[:id])
+    @book_number= @reader.books.size
   end
 end

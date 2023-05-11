@@ -26,6 +26,14 @@ require 'rails_helper'
           expect(page).to_not have_content("Age: #{todd.age}")
 
           end
+
+      describe "US7 When Parent Child Count" do
+        it "I see a count of the number of children associated with this parent" do
+          visit "/readers/#{amy.id}"
+
+          within("#reader_#{amy.id}") do
+          expect(page).to have_content(3)
+          end
         end
       end
     end

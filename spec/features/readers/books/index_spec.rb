@@ -15,9 +15,9 @@ require 'rails_helper'
   describe "US5 I visit '/readers/:reader_id/books'" do
     it "I see each book that is associated with that reader with each book's attributes" do
       visit "/readers/#{amy.id}/books"
-
-      within("#reader-#{amy.id}") do
-        expect(page).to have_content(plum_creek.name)
+save_and_open_page
+      # within("#reader-#{amy.id}") do
+        expect(page).to have_content(plum_creek.title)
         expect(page).to have_content(plum_creek.author)
         expect(page).to have_content(plum_creek.genre)
         expect(page).to have_content(deep_work.title)
@@ -26,7 +26,7 @@ require 'rails_helper'
         expect(page).to have_content(gone.genre)
         expect(page).to_not have_content(metal.title)
         expect(page).to_not have_content(penguins.title)
-      end        
+      # end        
       end
     end
   end

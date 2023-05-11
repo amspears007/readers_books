@@ -16,5 +16,11 @@ RSpec.describe Reader, type: :model do
       expect(Reader.sort_by_most_recently_created).to eq([vivian, amy, todd, penny])
       end
     end
+
+    describe "US7 It counts number of books" do
+      it "::book_count" do
+        expect(amy.book_count).to eq(3)
+      end
+    end
   end
 end

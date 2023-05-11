@@ -1,0 +1,16 @@
+<h1> <%= @reader.name %>'s Most Recent Books </h1>
+  <div id="reader-<%= @reader.id %>">
+    <% @books.each do |book| %>
+      <ol>
+        <li><h4><%= book.title %></h4></li>
+        <ul>
+          <li>Author: <%= book.author %></li>
+          <li>Genre: <%= book.genre %></li>
+          <li>Year Written: <%= book.year_written %></li>
+          <li>Fiction: <%= book.fiction %></li>
+        </ul>
+      </ol>
+    <div>
+    <% end %>
+
+

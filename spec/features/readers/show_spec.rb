@@ -34,6 +34,16 @@ require 'rails_helper'
           expect(page).to have_content("Number of Books: 3")
       end
     end
+
+    describe "US8 Child Index Link"
+      it "I see a link at the top of the page that takes me to the Parent Index" do
+        visit "/readers/#{amy.id}"
+
+        expect(page).to have_link("List All Readers")
+        click_link "List All Readers"
+        expect(current_path).to eq("/readers")
+
+      end
   end
 end
     

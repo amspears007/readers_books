@@ -4,6 +4,8 @@ require 'rails_helper'
     let!(:amy) {Reader.create!(name: "Amy", age:40, avid_reader: false, created_at: 1.day.ago)}
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true, created_at: 2.days.ago)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false, created_at: 3.days.ago)}
+    let!(:vivian) {Reader.create!(name: "Vivian", age:5, avid_reader: true)}
+
 
 
     let!(:plum_creek) {amy.books.create!(title: "On the Banks of Plum Creek", author:"Laura Ingalls Wilder", genre: "children's historical novels", year_written: 1937, fiction: true)}
@@ -29,8 +31,12 @@ require 'rails_helper'
     describe"US6 Parent Index sorted by Most Recently Created" do
       it "I visit the parent index, I see that records are ordered by most recently created first and next to each of the records I see when it was created" do
         visit "/readers"
-require 'pry'; binding.pry
-        expect(page)
+        save_and_open_page
+
+        expect(amy.name).to appear_before(todd.name)
+        expect(vivian.name).to appear_before(amy.name)
+        expect(todd.name).to appear_before(penny.name)
+
       end
     end
   end

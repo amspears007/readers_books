@@ -1,0 +1,16 @@
+<%= form_with url: "/readers", method: :post, local: true do |form| %><br>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br>
+  <%= form.label :age %>
+  <%= form.number_field :age, in: 1.0..10.0, step: 1.0 %><br>
+  <%= form.label :Avid_Reader %>
+
+  <%= form.select :Avid_Reader, [true, false] %><br><br>
+
+  <%# <%= form.label :Avid_Reader %>
+  <%#= form.radio_button :Avid_Reader, true %>
+  <%#= form.label :Avid_Reader_true, "True" %>
+  <%#= form.radio_button :Avid_Reader, false %>
+  <%#= form.label :Avid_Reader_false, "False" %>
+  <%= form.submit "Create Reader" %>
+<% end %>

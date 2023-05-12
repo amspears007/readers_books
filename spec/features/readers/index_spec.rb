@@ -33,7 +33,6 @@ require 'rails_helper'
     describe"US6 Parent Index sorted by Most Recently Created" do
       it "I visit the parent index, I see that records are ordered by most recently created first and next to each of the records I see when it was created" do
         visit "/readers"
-        save_and_open_page
 
         expect(amy.name).to appear_before(todd.name)
         expect(vivian.name).to appear_before(amy.name)
@@ -49,8 +48,17 @@ require 'rails_helper'
         expect(page).to have_link("New Reader")
         click_link("New Reader")
         expect(current_path).to eq("/readers/new")
+      end
+      
+      it " I fill out the form with a new parent's attributes, And I click the button 'Create Reader' to submit the form
+      Then a `POST` request is sent to the '/parents' route" do
+      visit "/readers/new"
+      save_and_open_page
 
-   
+        fill_in "Name", with: "Max"
+        fill_in "Age", with: "9"
+        click_on "Create Reader"
+        
       end
     end
   end

@@ -27,23 +27,32 @@ require 'rails_helper'
           end
         end
 
-      describe "US7 When Parent Child Count" do
-        it "I see a count of the number of children associated with this parent" do
-          visit "/readers/#{amy.id}"
+    describe "US7 When Parent Child Count" do
+      it "I see a count of the number of children associated with this parent" do
+        visit "/readers/#{amy.id}"
 
-          expect(page).to have_content("Number of Books: 3")
-      end
+        expect(page).to have_content("Number of Books: 3")
     end
+  end
 
     describe "US8 Child Index Link"
-      it "I see a link at the top of the page that takes me to the Parent Index" do
+      it "I see a link at the top of the page that takes me to the Child Index" do
         visit "/readers/#{amy.id}"
 
         expect(page).to have_link("List All Readers")
         click_link "List All Readers"
         expect(current_path).to eq("/readers")
-
       end
+
+    describe "US8 Parent Index Link" do
+      it "I see a link at the top of the page that takes me to the Child Index" do
+        visit "/readers/#{amy.id}"
+
+        expect(page).to have_link("List All Books")
+        click_link "List All Books"
+        expect(current_path).to eq("/books")
+      end
+      end
+    end
   end
-end
     

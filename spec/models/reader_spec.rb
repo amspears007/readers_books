@@ -16,8 +16,6 @@ RSpec.describe Reader, type: :model do
     it {should have_many :books}
 
     describe "US6 it sorts by most recently created " do
-      
-
       it "#sort by Most Recently Created " do
 
       expect(Reader.sort_by_most_recently_created).to eq([vivian, amy, todd, penny])

@@ -12,6 +12,7 @@
   amy = Reader.create!(name: "Amy", age:40, avid_reader: false)
   todd = Reader.create!(name: "Todd", age:45, avid_reader: true)
   penny = Reader.create!(name: "Penny", age:8, avid_reader: false)
+  vivian = Reader.create!(name: "Vivian", age:5, avid_reader: true)
 
 
   plum_creek = amy.books.create!(title: "On the Banks of Plum Creek",

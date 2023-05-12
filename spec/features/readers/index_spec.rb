@@ -1,6 +1,8 @@
 require 'rails_helper'
 
   RSpec.describe 'Parent Index', type: :feature do
+    # Book.destroy_all
+    # Reader.destroy_all
     let!(:amy) {Reader.create!(name: "Amy", age:40, avid_reader: false, created_at: 1.day.ago)}
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true, created_at: 2.days.ago)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false, created_at: 3.days.ago)}
@@ -36,7 +38,19 @@ require 'rails_helper'
         expect(amy.name).to appear_before(todd.name)
         expect(vivian.name).to appear_before(amy.name)
         expect(todd.name).to appear_before(penny.name)
+      end
+    end
 
+    describe "US11 Parent Creation" do
+      it "I see a link to create a new Parent record, 'New Parent' When I click this link
+      Then I am taken to '/parents/new' where I  see a form for a new parent record" do
+      visit "/readers"
+
+        expect(page).to have_link("New Reader")
+        click_link("New Reader")
+        expect(current_path).to eq("/readers/new")
+
+   
       end
     end
   end

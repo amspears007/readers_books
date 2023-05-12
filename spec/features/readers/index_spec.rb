@@ -53,12 +53,12 @@ require 'rails_helper'
       it " I fill out the form with a new parent's attributes, And I click the button 'Create Reader' to submit the form
       Then a `POST` request is sent to the '/parents' route" do
       visit "/readers/new"
-      save_and_open_page
+      # save_and_open_page
 
         fill_in "Name", with: "Max"
         fill_in "Age", with: "9"
         click_on "Create Reader"
-        
+
       end
     end
   end

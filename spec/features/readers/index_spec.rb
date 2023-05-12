@@ -59,6 +59,9 @@ require 'rails_helper'
         fill_in "Age", with: "9"
         click_on "Create Reader"
 
+        expect(current_path).to eq("/readers")
+        expect(page).to have_content("Max")
+
       end
     end
   end

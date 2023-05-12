@@ -13,4 +13,14 @@ class ReadersController < ApplicationController
   def new
   
   end
+
+  def create
+    Reader.create!(reader_params)
+    redirect_to "/readers"
+  end
+
+  private
+    def reader_params
+      params.permit(:name, :age, :avid_reader)
+    end
 end

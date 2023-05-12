@@ -6,4 +6,5 @@
     <li> Avid Reader: <%=@reader.avid_reader %>
     <li> Number of Books: <%= @book_number %>
   </ul>
+  <%= link_to "List of #{@reader.name}'s Books", "/readers/#{@reader.id}/books" %>
  </div>

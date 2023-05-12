@@ -1,4 +1,5 @@
 <h3> Reader Index Page </h3>
-<p><% @sorted_readers.each do |reader| %></p>
+<p><% @readers.each do |reader| %></p>
   <p> <%= reader.name %>----- Record Created: <%= reader.created_at %></p>
 <% end %>
+<%= link_to "New Reader", "/readers/new" %>

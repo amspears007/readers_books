@@ -1,6 +1,8 @@
 require 'rails_helper'
 
   RSpec.describe 'Parent Index', type: :feature do
+    # Book.destroy_all
+    # Reader.destroy_all
     let!(:amy) {Reader.create!(name: "Amy", age:40, avid_reader: false, created_at: 1.day.ago)}
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true, created_at: 2.days.ago)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false, created_at: 3.days.ago)}
@@ -31,11 +33,34 @@ require 'rails_helper'
     describe"US6 Parent Index sorted by Most Recently Created" do
       it "I visit the parent index, I see that records are ordered by most recently created first and next to each of the records I see when it was created" do
         visit "/readers"
-        save_and_open_page
 
         expect(amy.name).to appear_before(todd.name)
         expect(vivian.name).to appear_before(amy.name)
         expect(todd.name).to appear_before(penny.name)
+      end
+    end
+
+    describe "US11 Parent Creation" do
+      it "I see a link to create a new Parent record, 'New Parent' When I click this link
+      Then I am taken to '/parents/new' where I  see a form for a new parent record" do
+      visit "/readers"
+
+        expect(page).to have_link("New Reader")
+        click_link("New Reader")
+        expect(current_path).to eq("/readers/new")
+      end
+      
+      it " I fill out the form with a new parent's attributes, And I click the button 'Create Reader' to submit the form
+      Then a `POST` request is sent to the '/parents' route" do
+      visit "/readers/new"
+      # save_and_open_page
+
+        fill_in "Name", with: "Max"
+        fill_in "Age", with: "9"
+        click_on "Create Reader"
+
+        expect(current_path).to eq("/readers")
+        expect(page).to have_content("Max")
 
       end
     end

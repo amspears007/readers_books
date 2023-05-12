@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  # root "arti÷cles#index"
+  
   get "/readers", to: "readers#index"
+  get "/readers/new", to: "readers#new"
+  post "/readers", to: "readers#create"
   get "/readers/:id", to: "readers#show"
 
   get "/books", to: "books#index"

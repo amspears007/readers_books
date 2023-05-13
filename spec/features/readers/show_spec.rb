@@ -88,7 +88,7 @@ require 'rails_helper'
       end
 
       describe "US19 Parent Delete" do
-        it "I see a link to delete the parent when I click the link 'Delete Parent' Then a 'DELETE' request is sent to '/parents/:id'" do 
+        it "I see a link to delete the parent when I click the link 'Delete Parent' Then a 'DELETE' request is sent to '/parents/:id'" 
       end
     end
   end

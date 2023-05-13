@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get "/books/:id", to: "books#show"
 
   get "/readers/:reader_id/books", to: "reader_books#index"
+  get "/readers/:reader_id/books/new", to: "reader_books#new"
+  post "/readers/:reader_id/books/new", to: "reader_books#create"
 end

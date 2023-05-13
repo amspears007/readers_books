@@ -75,14 +75,14 @@ require 'rails_helper'
           expect(current_path).to eq("/readers/#{amy.id}/edit")
         end
 
-        xit "I fill out the form with updated information and I click the button to submit the form Then a `PATCH` request is sent to '/parents/:id',
+        it "I fill out the form with updated information and I click the button to submit the form Then a `PATCH` request is sent to '/parents/:id',
         the parent's info is updated, and I am redirected to the Parent's Show page where I see the parent's updated info" do
           visit "/readers/#{amy.id}/edit"
 
           fill_in "Name", with: "Amy Marie"
           click_on "Update Reader"
 
-          expect(current_path).to eq("readers/#{amy.id}")
+          expect(current_path).to eq("/readers/#{amy.id}")
           expect(page).to have_content("Amy Marie")
         end
       end

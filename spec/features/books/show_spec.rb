@@ -35,7 +35,7 @@ require 'rails_helper'
     describe "US4 When I visit '/child_table_name/:id'" do
       it "I see the child with that id including the child's attributes" do
         visit "/books/#{penguins.id}"
-        save_and_open_page
+       
         within("h1") do
           expect(page).to have_content("Book Show Page")
         end
@@ -54,6 +54,13 @@ require 'rails_helper'
           expect(page).to have_link("Update Book")
           click_link("Update Book")
           expect(current_path).to eq("/books/#{metal.id}/edit")
+
+          fill_in "genre", with: "sci-fi"
+          click_on "Update Book"
+
+          expect(current_path).to eq("/books/#{metal.id}")
+          expect(page).to have_content("sci-fi")
+          expect(page).to_not have_content("fantasy")
         end
       end
     end

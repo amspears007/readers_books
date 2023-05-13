@@ -4,5 +4,7 @@
   <li> Written By: <%= @book.author %></li>
   <li> Genre: <%= @book.genre %></li>
   <li> Year Published: <%= @book.year_written %></li>
-  <li> Fiction Classification: <%= @book.fiction %></li>
+  <li> Fiction Classification: <%= @book.fiction %></li><br>
+
+  <%= link_to "Update Book", "/books/#{@book.id}/edit" %>
 

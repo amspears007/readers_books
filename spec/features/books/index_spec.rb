@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  RSpec.describe 'Parent Index', type: :feature do
+  RSpec.describe 'Child Index', type: :feature do
     let!(:amy) {Reader.create!(name: "Amy", age:40, avid_reader: false)}
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false)}

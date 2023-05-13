@@ -86,6 +86,10 @@ require 'rails_helper'
           expect(page).to have_content("Amy Marie")
         end
       end
+
+      describe "US19 Parent Delete" do
+        it "I see a link to delete the parent when I click the link 'Delete Parent' Then a 'DELETE' request is sent to '/parents/:id'" do 
+      end
     end
   end
     

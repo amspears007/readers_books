@@ -30,7 +30,11 @@ class ReadersController < ApplicationController
     @reader = Reader.find(params[:id])
     @reader.update(reader_params)
     redirect_to "/readers/#{@reader.id}"
+  end
 
+  def destroy
+    Reader.destroy(params[:id])
+    redirect_to "/readers"
   end
 
   private

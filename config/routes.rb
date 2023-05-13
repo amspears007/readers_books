@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get "/readers/:id", to: "readers#show"
   get "readers/:id/edit", to: "readers#edit"
   patch "/readers/:id", to: "readers#update"
+  delete "/readers/:id", to: "readers#destroy"
 
   get "/books", to: "books#index"
   get "/books/:id", to: "books#show"

@@ -1,6 +1,6 @@
 <h1> Book Edit Page </h1>
 
-<%= form_with url: "/books/#{@book.id}", method: :post, local: true do |form| %><br>
+<%= form_with url: "/books/#{@book.id}", method: :patch, local: true do |form| %><br>
   <%= form.label :title %>
   <%= form.text_field :title %><br><br>
   <%= form.label :author %>

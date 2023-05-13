@@ -155,7 +155,7 @@ the child's data is updated,
 and I am redirected to the Child Show page where I see the Child's updated information
 ActiveRecord
 
-[ ] done
+[x] done
 
 User Story 15, Child Index only shows `true` Records 
 

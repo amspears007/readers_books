@@ -51,7 +51,17 @@ require 'rails_helper'
 
         expect(current_path).to eq("/readers/#{amy.id}/books")
         expect(page).to have_content("American Dirt")
-        
+      end
+    end
+
+    describe "US16 Sort Parent's Children in Alphabetical Order by name" do
+      it "I see a link to sort book titles in alphabetical order" do
+        visit "/readers/#{amy.id}/books"
+
+        expect(page).to have_link("Index Alphabetically")
+        click_link("Index Alphabetically")
+        expect(penguins.title).to appear_before(plum_creek.title)
+        expect(plum_creek.title).to appear_before(metal.title)
       end
     end
   end

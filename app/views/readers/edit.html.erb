@@ -1,3 +1,4 @@
+<h1> Edit Reader Page </h1>
 <%= form_with url: "/readers/#{@reader.id}", method: :patch, local: true do |form| %><br>
   <%= form.label :name %>
   <%= form.text_field :name %><br><br>

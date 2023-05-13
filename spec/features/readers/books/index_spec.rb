@@ -15,7 +15,7 @@ require 'rails_helper'
   describe "US5 I visit '/readers/:reader_id/books'" do
     it "I see each book that is associated with that reader with each book's attributes" do
       visit "/readers/#{amy.id}/books"
-save_and_open_page
+
       within("h1") do
         expect(page).to have_content("#{amy.name}'s Most Recent Books")
       end
@@ -29,7 +29,29 @@ save_and_open_page
         expect(page).to have_content(gone.genre)
         expect(page).to_not have_content(metal.title)
         expect(page).to_not have_content(penguins.title)
-       end        
+        end        
+      end
+    end
+
+    describe "US13  Parent Child Creation" do
+      it "I see a link to add a new adoptable book for that parent 'Create Book'" do
+        visit "/readers/#{amy.id}/books"
+        # save_and_open_page
+        expect(page).to have_link("New Book")
+        click_link("New Book")
+        expect(current_path).to eq("/readers/#{amy.id}/books/new")
+
+        fill_in "title", with: "American Dirt" 
+        fill_in "author", with: "Jeanine Cummins" 
+        fill_in "genre", with: "thriller"
+        fill_in "year_written", with: "2020"
+
+        fill_in "fiction", with: "true"
+        click_on "Create Book"
+
+        expect(current_path).to eq("/readers/#{amy.id}/books")
+        expect(page).to have_content("American Dirt")
+        
       end
     end
   end

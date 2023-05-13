@@ -68,6 +68,7 @@ require 'rails_helper'
       describe "US12 Parent Update" do
         it " I see a link to update the reader 'Update Reader' When I click the link 'Update Parent'  I am taken to '/parents/:id/edit' where I  see a form to edit the reader's attributes" do
           visit "readers/#{amy.id}"
+          save_and_open_page
 
           expect(page).to have_link("Update Reader")
           click_link("Update Reader")

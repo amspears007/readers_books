@@ -16,7 +16,12 @@ class ReadersController < ApplicationController
 
   def create
     Reader.create!(reader_params)
+   
     redirect_to "/readers"
+  end
+
+  def edit
+    
   end
 
   private

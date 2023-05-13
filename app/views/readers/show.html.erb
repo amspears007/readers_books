@@ -1,6 +1,7 @@
 <h3> Reader Show Page of <%= @reader.name %></h3>
 
 <div id="reader-<%= @reader.id %>">
+ <%= link_to "Update Reader", "/readers/#{@reader.id}/edit" %>
   <ul>
     <li> Age: <%=@reader.age %>
     <li> Avid Reader: <%=@reader.avid_reader %>

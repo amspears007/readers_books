@@ -2,17 +2,17 @@
   <%= form.label :name %>
   <%= form.text_field :name %><br><br>
   <%= form.label :age %>
-  <%= form.number_field :age, in: 1.0..10.0, step: 1.0 %><br><br>
-  <%= form.label :Avid_Reader %>
+  <%= form.number_field :age, in: 2..100, step: 1.0 %><br><br>
+  <%= form.label :avid_reader %>
+  <%= form.text_field :avid_reader %><br><br>
 
-  <%= form.check_box :true %>
-  <%= form.label :true, "True" %>
+  <%#= form.check_box :avid_reader %>
+  <%#= form.label :true, "True" %>
+  <%#= form.check_box :avid_reader%>
+  <%#= form.label :false, "False" %>
+ 
 
-  <%= form.check_box :false %>
-  <%= form.label :false, "False" %>
-
-
-  <%#= form.select :Avid_Reader, [true, false] %><br><br>
+  <%#= form.select :Avid_Reader, [true, false] %>
 
   <%# <%= form.label :Avid_Reader %>
   <%#= form.radio_button :Avid_Reader, true %>

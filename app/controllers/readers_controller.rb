@@ -16,7 +16,21 @@ class ReadersController < ApplicationController
 
   def create
     Reader.create!(reader_params)
+    # require 'pry'; binding.pry
+   
     redirect_to "/readers"
+  end
+
+  def edit
+    @reader = Reader.find(params[:id])
+
+  end
+
+  def update
+    @reader = Reader.find(params[:id])
+    @reader.update(reader_params)
+    redirect_to "/readers/#{@reader.id}"
+
   end
 
   private

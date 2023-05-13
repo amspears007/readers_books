@@ -50,7 +50,7 @@ require 'rails_helper'
       describe "US14 Child Update" do
         it "I see a link to update that Child 'Update Book' when I click the link I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes.  When I click the button to submit the form 'Update Book" do 
           visit "books/#{metal.id}"
-
+save_and_open_page
           expect(page).to have_link("Update Book")
           click_link("Update Book")
           expect(current_path).to eq("/books/#{metal.id}/edit")

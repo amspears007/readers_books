@@ -46,4 +46,16 @@ require 'rails_helper'
         end
       end
     end
+    
+    describe "US15 Child Index only shows `true` Records" do
+      it "I only see books where fiction column is `true`" do
+        visit "/books"
+
+        expect(page).to have_content(plum_creek.name)
+        expect(page).to have_content(gone.name)
+        expect(page).to have_content(penguins.name)
+        expect(page).to have_content(metal.name)
+        expect(page).to_not have_content(deep_work.name)
+      end
+    end
   end

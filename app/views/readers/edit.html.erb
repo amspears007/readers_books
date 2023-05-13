@@ -1,0 +1,9 @@
+<%= form_with url: "/readers/#{@reader.id}", method: :patch, local: true do |form| %><br>
+  <%= form.label :name %>
+  <%= form.text_field :name %><br><br>
+  <%= form.label :age %>
+  <%= form.number_field :age, in: 2..100, step: 1.0 %><br><br>
+  <%= form.label :avid_Reader %>
+  <%= form.text_field :avid_Reader %>
+  <%= form.submit "Update Reader" %>
+<% end %>

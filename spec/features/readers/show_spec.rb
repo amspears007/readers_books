@@ -13,7 +13,7 @@ require 'rails_helper'
     describe "US2 When I visit '/readers/:id' " do
       it "I see the parent with that id including the parent's attributes (data from each column that is on the parent table)" do
         visit "/readers/#{amy.id}"
-        save_and_open_page
+        # save_and_open_page
 
         within("h3") do
           expect(page).to have_content("Reader Show Page of #{amy.name}")
@@ -62,6 +62,27 @@ require 'rails_helper'
         expect(page).to have_link("List of #{amy.name}'s Books")
         click_link "List of #{amy.name}'s Books"
         expect(current_path).to eq("/readers/#{amy.id}/books")
+        end
+      end
+
+      describe "US12 Parent Update" do
+        it " I see a link to update the reader 'Update Reader' When I click the link 'Update Parent'  I am taken to '/parents/:id/edit' where I  see a form to edit the reader's attributes" do
+          visit "readers/#{amy.id}"
+
+          expect(page).to have_link("Update Reader")
+          click_link("Update Reader")
+          expect(current_path).to eq("/readers/#{amy.id}/edit")
+        end
+
+        xit "I fill out the form with updated information and I click the button to submit the form Then a `PATCH` request is sent to '/parents/:id',
+        the parent's info is updated, and I am redirected to the Parent's Show page where I see the parent's updated info" do
+          visit "/readers/#{amy.id}/edit"
+
+          fill_in "Name", with: "Amy Marie"
+          click_on "Update Reader"
+
+          expect(current_path).to eq("readers/#{amy.id}")
+          expect(page).to have_content("Amy Marie")
         end
       end
     end

@@ -2,5 +2,5 @@
 <p><% @readers.each do |reader| %></p>
   <p> <%= reader.name %>----- Record Created: <%= reader.created_at %></p> 
   <%= button_to "Delete #{reader.name}", "/readers/#{reader.id}", method: :delete %>
-<% end %>
-<%= link_to "New Reader", "/readers/new" %>
+<% end %><br>
+<%= link_to "Add New Reader", "/readers/new" %>

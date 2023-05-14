@@ -2,7 +2,7 @@ class ReadersController < ApplicationController
   def index
     # @readers = Reader.all
     @readers = Reader.sort_by_most_recently_created
-    
+    # require 'pry'; binding.pry
   end
 
   def show

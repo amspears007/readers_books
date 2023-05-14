@@ -5,7 +5,7 @@ require 'rails_helper'
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false)}
 
-
+    let!(:nine) {amy.books.create!(title: "Nine Perfect Strangers", author:"Liane Moriarty", genre: "thriller", year_written: 2018, fiction: true)}
     let!(:plum_creek) {amy.books.create!(title: "On the Banks of Plum Creek", author:"Laura Ingalls Wilder", genre: "children's historical novels", year_written: 1937, fiction: true)}
     let!(:gone) {amy.books.create!(title: "Then She was Gone", author:"Lisa Jewell", genre: "thriller", year_written: 2017, fiction: true)}
     let!(:deep_work) {amy.books.create!(title: "Deep Work", author:"Cal Newport", genre: "self help", year_written: 2016, fiction: false)}
@@ -58,9 +58,12 @@ require 'rails_helper'
       it "I see a link to sort book titles in alphabetical order" do
         visit "/readers/#{amy.id}/books"
 
-        expect(page).to have_link("Index Alphabetically")
+        # expect(page).to have_link("Index Alphabetically")
         click_link("Index Alphabetically")
-        expect(penguins.title).to appear_before(plum_creek.title)
+        
+        expect(current_path).to eq("/readers/#{amy.id}/books")
+        expect(penguins.title).to appear_before(nine.title)
+        expect(nine.title).to appear_before(plum_creek.title)
         expect(plum_creek.title).to appear_before(metal.title)
       end
     end

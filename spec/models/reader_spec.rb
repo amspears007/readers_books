@@ -30,5 +30,12 @@ RSpec.describe Reader, type: :model do
         expect(vivian.book_count).to eq(0)
       end
     end
+
+    describe "US16 Sort Parent's Children in Alphabetical Order by name" do
+      it "sorts_alphabetically" do
+          
+          expect(amy.sorts_alphabetically).to eq([deep_work, plum_creek, gone])
+      end
+    end
   end
 end

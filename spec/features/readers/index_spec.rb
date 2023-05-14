@@ -53,7 +53,6 @@ require 'rails_helper'
       it " I fill out the form with a new parent's attributes, And I click the button 'Create Reader' to submit the form
       Then a `POST` request is sent to the '/parents' route" do
       visit "/readers/new"
-      # save_and_open_page
 
         fill_in "Name", with: "Max"
         fill_in "Age", with: "9"
@@ -82,7 +81,7 @@ require 'rails_helper'
 
     describe "US22 Parent Delete from Index" do
       it " I see a link to delete that parent next to the parent When I click the link
-      I am returned to the Parent Index Page where I no longer see that parent" 
+      I am returned to the Parent Index Page where I no longer see that parent" do
       visit "/readers"
         amy_s = Reader.create!(name: "Am", age:30, avid_reader: false)
 
@@ -92,6 +91,7 @@ require 'rails_helper'
       expect(page).to_not have(amy_s.name)
       expect(page).to_not have_button("Delete #{amy_s.name}")
 
+    end
     
     end
   end

@@ -8,4 +8,8 @@ class Reader < ApplicationRecord
   def book_count
     books.size
   end
+
+  def sorts_alphabetically
+    self.books.order(:title)
+  end
 end

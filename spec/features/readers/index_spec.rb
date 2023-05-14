@@ -64,5 +64,20 @@ require 'rails_helper'
 
       end
     end
+
+    describe "US22 Parent Delete from Index" do
+      it " I see a link to delete that parent next to the parent When I click the link
+      I am returned to the Parent Index Page where I no longer see that parent" 
+      visit "/readers"
+        amy_s = Reader.create!(name: "Am", age:30, avid_reader: false)
+
+      # expect(page).to have_link("Delete #{amy_s.name}")
+      click_button("Delete #{amy_s.name}")
+      expect(current_path).to eq("/readers")
+      expect(page).to_not have(amy_s.name)
+      expect(page).to_not have_button("Delete #{amy_s.name}")
+
+    
+    end
   end
 end

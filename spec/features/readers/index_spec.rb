@@ -72,7 +72,7 @@ require 'rails_helper'
       visit "/readers"
       save_and_open_page
 
-      expect(page).to have_link("Delete #{amy_s.name}")
+      expect(page).to have_button("Delete #{amy_s.name}")
       click_button("Delete #{amy_s.name}")
       expect(current_path).to eq("/readers")
       expect(page).to_not have_content(amy_s.name)

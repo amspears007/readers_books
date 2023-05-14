@@ -61,7 +61,22 @@ require 'rails_helper'
 
         expect(current_path).to eq("/readers")
         expect(page).to have_content("Max")
+      end
+    end
 
+    describe "US17 Parent Update From Parent Index Page" do
+      it "Next to every parent, I see a link to edit that parent's info
+      When I click the link I should be taken to that parent's edit page where I can update its information just like in User Story 12" do
+        visit "/readers"
+
+        click_link("Edit #{amy.name}")
+        expect(current_path).to eq("/readers/#{amy.id}/edit")
+
+        fill_in "Name", with: "Amy Marie"
+        click_on "Update Reader"
+
+        expect(current_path).to eq("/readers/")
+        expect(page).to have_content("Amy Marie")
       end
     end
 

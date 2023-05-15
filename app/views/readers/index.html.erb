@@ -1,5 +1,6 @@
 <h3> Reader Index Page </h3>
 <p><% @readers.each do |reader| %></p>
-  <p> <%= reader.name %>----- Record Created: <%= reader.created_at %></p>
-<% end %>
-<%= link_to "New Reader", "/readers/new" %>
+  <p> <%= reader.name %>----- Record Created: <%= reader.created_at %></p> 
+  <%= button_to "Delete #{reader.name}", "/readers/#{reader.id}", method: :delete %>
+<% end %><br>
+<%= link_to "Add New Reader", "/readers/new" %>

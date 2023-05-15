@@ -45,8 +45,8 @@ require 'rails_helper'
       Then I am taken to '/parents/new' where I  see a form for a new parent record" do
       visit "/readers"
 
-        expect(page).to have_link("New Reader")
-        click_link("New Reader")
+        expect(page).to have_link("Add New Reader")
+        click_link("Add New Reader")
         expect(current_path).to eq("/readers/new")
       end
       
@@ -62,6 +62,21 @@ require 'rails_helper'
         expect(current_path).to eq("/readers")
         expect(page).to have_content("Max")
 
+      end
+    end
+
+    describe "US22 Parent Delete from Index" do
+      it " I see a link to delete that parent next to the parent When I click the link
+      I am returned to the Parent Index Page where I no longer see that parent" do
+      amy_s = Reader.create!(name: "Amers", age: 30, avid_reader: false)
+      visit "/readers"
+      save_and_open_page
+
+      expect(page).to have_button("Delete #{amy_s.name}")
+      click_button("Delete #{amy_s.name}")
+      expect(current_path).to eq("/readers")
+      expect(page).to_not have_content(amy_s.name)
+      expect(page).to_not have_button("Delete #{amy_s.name}")
       end
     end
   end

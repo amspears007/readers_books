@@ -2,7 +2,7 @@ class ReadersController < ApplicationController
   def index
     # @readers = Reader.all
     @readers = Reader.sort_by_most_recently_created
-    
+    # require 'pry'; binding.pry
   end
 
   def show
@@ -30,7 +30,11 @@ class ReadersController < ApplicationController
     @reader = Reader.find(params[:id])
     @reader.update(reader_params)
     redirect_to "/readers/#{@reader.id}"
+  end
 
+  def destroy
+    Reader.destroy(params[:id])
+    redirect_to "/readers"
   end
 
   private

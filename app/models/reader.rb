@@ -1,5 +1,5 @@
 class Reader < ApplicationRecord
-  has_many :books
+  has_many :books, dependent: :destroy
 
   def self.sort_by_most_recently_created
     Reader.order(created_at: :desc)

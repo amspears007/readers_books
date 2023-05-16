@@ -5,6 +5,10 @@ require 'rails_helper'
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false)}
 
+    let!(:bossy) {amy.books.create!(title: "Bossypants", author: "Tina Fay", 
+                                    genre: "autobiographical comedy", 
+                                    year_written: 2011, 
+                                    fiction: false)}
 
     let!(:plum_creek) {amy.books.create!(title: "On the Banks of Plum Creek", 
                                         author:"Laura Ingalls Wilder", 
@@ -47,20 +51,35 @@ require 'rails_helper'
         end
       end
 
-      describe "US14 Child Update" do
-        it "I see a link to update that Child 'Update Book' when I click the link I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes.  When I click the button to submit the form 'Update Book" do 
-          visit "books/#{metal.id}"
-save_and_open_page
-          expect(page).to have_link("Update Book")
-          click_link("Update Book")
-          expect(current_path).to eq("/books/#{metal.id}/edit")
+    describe "US14 Child Update" do
+      it "I see a link to update that Child 'Update Book' when I click the link I am taken to '/child_table_name/:id/edit' where I see a form to edit the child's attributes.  When I click the button to submit the form 'Update Book" do 
+        visit "books/#{metal.id}"
 
-          fill_in "genre", with: "sci-fi"
-          click_on "Update Book"
+        expect(page).to have_link("Update Book")
+        click_link("Update Book")
+        expect(current_path).to eq("/books/#{metal.id}/edit")
 
-          expect(current_path).to eq("/books/#{metal.id}")
-          expect(page).to have_content("sci-fi")
-          expect(page).to_not have_content("fantasy")
-        end
+        fill_in "genre", with: "sci-fi"
+        click_on "Update Book"
+
+        expect(current_path).to eq("/books/#{metal.id}")
+        expect(page).to have_content("sci-fi")
+        expect(page).to_not have_content("fantasy")
       end
     end
+
+    describe "US20 Child Delete" do
+      it "I see a link to delete the child 'Delete Book' When I click the link
+      Then a 'DELETE' request is sent to '/child_table_name/:id',the child is deleted,
+      and I am redirected to the child index page where I no longer see this child" do
+        visit "/books/#{bossy.id}"
+
+        expect(page).to have_link("Delete #{bossy.title}")
+        click_link("Delete #{bossy.title}")
+        expect(current_path).to eq("/books")
+
+        expect(page).to_not have_content(bossy.title)
+        expect(page).to_not have_content(bossy.author)
+      end
+    end
+  end

@@ -7,6 +7,6 @@
   <li> Genre: <%= book.genre %></li>
   <li> Year Written: <%= book.year_written %></li>
   <li> Fiction: <%= book.fiction %></li>
-  
+  <%= button_to "Delete #{book.title}", "/books/#{book.id}", method: :delete %>
 </div>
 <% end %>

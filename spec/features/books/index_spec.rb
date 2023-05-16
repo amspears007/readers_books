@@ -75,4 +75,17 @@ require 'rails_helper'
           expect(page).to_not have_content("fantasy")
       end
     end
+
+    describe "US23 Child Delete From Childs Index Page" do
+      it "Next to every child, I see a link to delete that child When I click the link I should be taken to the `child_table_name` index page where I no longer see that child" do
+        visit "/books"
+save_and_open_page
+        expect(page).to have_button("Delete #{gone.title}")
+        click_button("Delete #{gone.title}")
+        expect(current_path).to eq("/books")
+
+        expect(page).to_not have_content(gone.title)
+        expect(page).to_not have_content(gone.author)
+      end
+    end
   end

@@ -208,7 +208,7 @@ Then a 'DELETE' request is sent to '/parents/:id',
 the parent is deleted, and all child records are deleted
 and I am redirected to the parent index page where I no longer see this parent
 
-[ ] done
+[x] done
 
 User Story 20, Child Delete 
 
@@ -232,7 +232,7 @@ When I input a number value and click the submit button that reads 'Only return 
 Then I am brought back to the current index page with only the records that meet that threshold shown.
 
 Usability
-[ ] done
+[x] done
 
 User Story 22, Parent Delete From Parent Index Page 
 

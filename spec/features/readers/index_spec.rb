@@ -67,6 +67,7 @@ require 'rails_helper'
       it "Next to every parent, I see a link to edit that parent's info
       When I click the link I should be taken to that parent's edit page where I can update its information just like in User Story 12" do
         visit "/readers"
+        save_and_open_page
 
         click_link("Edit #{amy.name}")
         expect(current_path).to eq("/readers/#{amy.id}/edit")
@@ -74,7 +75,7 @@ require 'rails_helper'
         fill_in "Name", with: "Amy Marie"
         click_on "Update Reader"
 
-        expect(current_path).to eq("/readers/")
+        expect(current_path).to eq("/readers/#{amy.id}")
         expect(page).to have_content("Amy Marie")
       end
     end
@@ -84,7 +85,7 @@ require 'rails_helper'
       I am returned to the Parent Index Page where I no longer see that parent" do
       visit "/readers"
       amy_s = Reader.create!(name: "Amers", age:20, avid_reader: false)
-        require 'pry'; binding.pry
+        # require 'pry'; binding.pry
       save_and_open_page
 
       expect(page).to have_button("Delete #{amy_s.name}")

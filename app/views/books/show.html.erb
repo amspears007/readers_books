@@ -7,4 +7,5 @@
   <li> Fiction Classification: <%= @book.fiction %></li><br>
 
   <%= link_to "Update Book", "/books/#{@book.id}/edit" %>
+  <%= link_to "Delete #{@book.title}", "/books/#{@book.id}", method: :delete %>
 

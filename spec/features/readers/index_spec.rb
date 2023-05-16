@@ -67,16 +67,26 @@ require 'rails_helper'
 
     describe "US22 Parent Delete from Index" do
       it " I see a link to delete that parent next to the parent When I click the link
-      I am returned to the Parent Index Page where I no longer see that parent" do
-      amy_s = Reader.create!(name: "Amers", age: 30, avid_reader: false)
-      visit "/readers"
-      save_and_open_page
+        I am returned to the Parent Index Page where I no longer see that parent" do
+        amy_s = Reader.create!(name: "Amers", age: 30, avid_reader: false)
+        visit "/readers"
+        save_and_open_page
 
-      expect(page).to have_button("Delete #{amy_s.name}")
-      click_button("Delete #{amy_s.name}")
-      expect(current_path).to eq("/readers")
-      expect(page).to_not have_content(amy_s.name)
-      expect(page).to_not have_button("Delete #{amy_s.name}")
+        expect(page).to have_button("Delete #{amy_s.name}")
+        click_button("Delete #{amy_s.name}")
+        expect(current_path).to eq("/readers")
+        expect(page).to_not have_content(amy_s.name)
+        expect(page).to_not have_button("Delete #{amy_s.name}")
+      end
+
+      it "deletes a parent that has child associated with it" do
+        visit "/readers"
+
+        expect(page).to have_button("Delete #{todd.name}")
+        click_button("Delete #{todd.name}")
+        expect(current_path).to eq("/readers")
+        expect(page).to_not have_content(todd.name)
+        expect(page).to_not have_button("Delete #{todd.name}")
       end
     end
   end

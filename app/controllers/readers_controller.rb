@@ -15,9 +15,7 @@ class ReadersController < ApplicationController
   end
 
   def create
-    Reader.create!(reader_params)
-    # require 'pry'; binding.pry
-   
+    Reader.create!(reader_params)  
     redirect_to "/readers"
   end
 

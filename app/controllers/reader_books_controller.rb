@@ -2,7 +2,6 @@ class ReaderBooksController < ApplicationController
   def index
     @reader = Reader.find(params[:reader_id])
     @books = @reader.sorts_alphabetically(params[:sort])
-    # require 'pry'; binding.pry
   end
 
   def new

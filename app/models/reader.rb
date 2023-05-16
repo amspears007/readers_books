@@ -9,7 +9,11 @@ class Reader < ApplicationRecord
     books.size
   end
 
-  def sorts_alphabetically
+  def sorts_alphabetically(sort)
+    if sort == "true"
     self.books.order(:title)
+    else
+      books
+    end
   end
 end

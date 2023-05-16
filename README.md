@@ -196,7 +196,7 @@ I should be taken to that `child_table_name` edit page where I can update its in
 
 ### ITERATION 3
 CRUD
-[ ] done
+[x] done
 
 User Story 19, Parent Delete 
 

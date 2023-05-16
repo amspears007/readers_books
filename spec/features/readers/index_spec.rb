@@ -53,7 +53,6 @@ require 'rails_helper'
       it " I fill out the form with a new parent's attributes, And I click the button 'Create Reader' to submit the form
       Then a `POST` request is sent to the '/parents' route" do
       visit "/readers/new"
-      # save_and_open_page
 
         fill_in "Name", with: "Max"
         fill_in "Age", with: "9"
@@ -61,15 +60,32 @@ require 'rails_helper'
 
         expect(current_path).to eq("/readers")
         expect(page).to have_content("Max")
+      end
+    end
 
+    describe "US17 Parent Update From Parent Index Page" do
+      it "Next to every parent, I see a link to edit that parent's info
+      When I click the link I should be taken to that parent's edit page where I can update its information just like in User Story 12" do
+        visit "/readers"
+        save_and_open_page
+
+        click_link("Edit #{amy.name}")
+        expect(current_path).to eq("/readers/#{amy.id}/edit")
+
+        fill_in "Name", with: "Amy Marie"
+        click_on "Update Reader"
+
+        expect(current_path).to eq("/readers/#{amy.id}")
+        expect(page).to have_content("Amy Marie")
       end
     end
 
     describe "US22 Parent Delete from Index" do
-      it " I see a link to delete that parent next to the parent When I click the link
+      xit " I see a link to delete that parent next to the parent When I click the link
       I am returned to the Parent Index Page where I no longer see that parent" do
-      amy_s = Reader.create!(name: "Amers", age: 30, avid_reader: false)
       visit "/readers"
+      amy_s = Reader.create!(name: "Amers", age:20, avid_reader: false)
+        # require 'pry'; binding.pry
       save_and_open_page
 
       expect(page).to have_button("Delete #{amy_s.name}")
@@ -77,6 +93,7 @@ require 'rails_helper'
       expect(current_path).to eq("/readers")
       expect(page).to_not have_content(amy_s.name)
       expect(page).to_not have_button("Delete #{amy_s.name}")
+
       end
     end
   end

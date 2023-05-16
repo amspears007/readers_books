@@ -1,0 +1,15 @@
+<h1> Book Edit Page </h1>
+
+<%= form_with url: "/books/#{@book.id}", method: :patch, local: true do |form| %><br>
+  <%= form.label :title %>
+  <%= form.text_field :title %><br><br>
+  <%= form.label :author %>
+  <%= form.text_field :author %><br><br>
+  <%= form.label :genre %>
+  <%= form.text_field :genre %><br><br>
+  <%= form.label :year_written %>
+  <%= form.number_field :year_written, step: 1.0 %><br><br>
+  <%= form.label :fiction %>
+  <%= form.text_field :fiction %><br><br>
+  <%= form.submit "Update Book" %>
+<% end %>

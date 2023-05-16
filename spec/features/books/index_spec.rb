@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  RSpec.describe 'Parent Index', type: :feature do
+  RSpec.describe 'Child Index', type: :feature do
     let!(:amy) {Reader.create!(name: "Amy", age:40, avid_reader: false)}
     let!(:todd) {Reader.create!(name: "Todd", age:45, avid_reader: true)}
     let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false)}
@@ -44,6 +44,18 @@ require 'rails_helper'
           expect(page).to have_content("Year Written: #{penguins.year_written}")
           expect(page).to have_content("Fiction: #{penguins.fiction}")
         end
+      end
+    end
+    
+    describe "US15 Child Index only shows `true` Records" do
+      it "I only see books where fiction column is `true`" do
+        visit "/books"
+
+        expect(page).to have_content(plum_creek.title)
+        expect(page).to have_content(gone.title)
+        expect(page).to have_content(penguins.title)
+        expect(page).to have_content(metal.title)
+        expect(page).to_not have_content(deep_work.title)
       end
     end
   end

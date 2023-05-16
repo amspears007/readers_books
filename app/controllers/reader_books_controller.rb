@@ -1,7 +1,8 @@
 class ReaderBooksController < ApplicationController
   def index
     @reader = Reader.find(params[:reader_id])
-    @books = @reader.books
+    @books = @reader.sorts_alphabetically(params[:sort])
+    # require 'pry'; binding.pry
   end
 
   def new
@@ -9,11 +10,9 @@ class ReaderBooksController < ApplicationController
   end
 
   def create
-    # require 'pry'; binding.pry
     reader = Reader.find(params[:reader_id])
     reader.books.create!(reader_books_params)
     redirect_to "/readers/#{reader.id}/books"
-    # require 'pry'; binding.pry
   end
 
   private

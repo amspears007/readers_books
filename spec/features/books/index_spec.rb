@@ -58,4 +58,21 @@ require 'rails_helper'
         expect(page).to_not have_content(deep_work.title)
       end
     end
+
+    describe "US18 Child Update From Childs Index Page" do
+      it "Next to every book, I see a link to edit that book's info When I click the link  I should be taken to that book edit page where I can update its information just like in User Story 14" do
+        visit "/books"
+        save_and_open_page
+        expect(page).to have_link("Edit #{metal.title}")
+        click_link("Edit #{metal.title}")
+        expect(current_path).to eq("/books/#{metal.id}/edit")
+
+          fill_in "genre", with: "sci-fi"
+          click_on "Update Book"
+
+          expect(current_path).to eq("/books/#{metal.id}")
+          expect(page).to have_content("sci-fi")
+          expect(page).to_not have_content("fantasy")
+      end
+    end
   end

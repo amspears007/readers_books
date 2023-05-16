@@ -2,7 +2,7 @@
 
 <% @fiction_books.each do |book| %>
 <div id="book-info-<%=book.id%>">
-  <h3> Title: <%= book.title %></h3>
+  <h3> Title: <%= book.title %></h3><%= link_to "Edit #{book.title}", "/books/#{book.id}/edit" %>
   <p> Author: <%= book.author %></p>
   <li> Genre: <%= book.genre %></li>
   <li> Year Written: <%= book.year_written %></li>

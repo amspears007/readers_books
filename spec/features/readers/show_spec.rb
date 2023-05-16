@@ -13,7 +13,6 @@ require 'rails_helper'
     describe "US2 When I visit '/readers/:id' " do
       it "I see the parent with that id including the parent's attributes (data from each column that is on the parent table)" do
         visit "/readers/#{amy.id}"
-        # save_and_open_page
 
         within("h3") do
           expect(page).to have_content("Reader Show Page of #{amy.name}")
@@ -54,7 +53,6 @@ require 'rails_helper'
         end
       end
 
-
     describe "US10 Parent Child Index Link" do
       it "I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')" do
         visit "/readers/#{amy.id}"
@@ -65,31 +63,44 @@ require 'rails_helper'
         end
       end
 
-      describe "US12 Parent Update" do
-        it " I see a link to update the reader 'Update Reader' When I click the link 'Update Parent'  I am taken to '/parents/:id/edit' where I  see a form to edit the reader's attributes" do
-          visit "readers/#{amy.id}"
-          save_and_open_page
+    describe "US12 Parent Update" do
+      it " I see a link to update the reader 'Update Reader' When I click the link 'Update Parent'  I am taken to '/parents/:id/edit' where I  see a form to edit the reader's attributes" do
+        visit "readers/#{amy.id}"
+        save_and_open_page
 
-          expect(page).to have_link("Update Reader")
-          click_link("Update Reader")
-          expect(current_path).to eq("/readers/#{amy.id}/edit")
-        end
-
-        it "I fill out the form with updated information and I click the button to submit the form Then a `PATCH` request is sent to '/parents/:id',
-        the parent's info is updated, and I am redirected to the Parent's Show page where I see the parent's updated info" do
-          visit "/readers/#{amy.id}/edit"
-
-          fill_in "Name", with: "Amy Marie"
-          click_on "Update Reader"
-
-          expect(current_path).to eq("/readers/#{amy.id}")
-          expect(page).to have_content("Amy Marie")
-        end
+        expect(page).to have_link("Update Reader")
+        click_link("Update Reader")
+        expect(current_path).to eq("/readers/#{amy.id}/edit")
       end
 
-      describe "US19 Parent Delete" do
-        it "I see a link to delete the parent when I click the link 'Delete Parent' Then a 'DELETE' request is sent to '/parents/:id'" 
+      it "I fill out the form with updated information and I click the button to submit the form Then a `PATCH` request is sent to '/parents/:id',
+      the parent's info is updated, and I am redirected to the Parent's Show page where I see the parent's updated info" do
+        visit "/readers/#{amy.id}/edit"
+
+        fill_in "Name", with: "Amy Marie"
+        click_on "Update Reader"
+
+        expect(current_path).to eq("/readers/#{amy.id}")
+        expect(page).to have_content("Amy Marie")
+      end
+    end
+
+    describe "US19 Parent Delete" do
+      it "I see a link to delete the parent when I click the link 'Delete Parent' Then a 'DELETE' request is sent to '/parents/:id' the parent is deleted, and all child records are deleted
+      and I am redirected to the parent index page where I no longer see this parent" do
+      amy_s = Reader.create!(name: "Amers", age: 30, avid_reader: false)
+      bossy = amy_s.books.create!(title: "Bossypants", author: "Tina Fay", genre: "autobiographical comedy", year_written: 2011, fiction: false)
+        visit "/readers/#{amy_s.id}"
+        save_and_open_page
+
+        expect(page).to have_link("Delete #{amy_s.name}")
+        click_link("Delete #{amy_s.name}")
+        expect(current_path).to eq("/readers")
+
+        expect(page).to_not have_content(amy_s.name)
+        expect(page).to_not have_button("Delete #{amy_s.name}")
       end
     end
   end
+end
     

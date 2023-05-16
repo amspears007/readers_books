@@ -62,7 +62,7 @@ require 'rails_helper'
     describe "US18 Child Update From Childs Index Page" do
       it "Next to every book, I see a link to edit that book's info When I click the link  I should be taken to that book edit page where I can update its information just like in User Story 14" do
         visit "/books"
-        
+        save_and_open_page
         expect(page).to have_link("Edit #{metal.title}")
         click_link("Edit #{metal.title}")
         expect(current_path).to eq("/books/#{metal.id}/edit")

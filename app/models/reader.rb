@@ -16,4 +16,8 @@ class Reader < ApplicationRecord
       books
     end
   end
+
+  def books_before(year)
+    books.where("year_written < #{year}")
+  end
 end

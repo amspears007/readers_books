@@ -68,4 +68,23 @@ require 'rails_helper'
         expect(plum_creek.title).to appear_before(gone.title)
       end
     end
+
+    describe "Display Records Over a Given Threshold" do
+      it "I see a form that allows me to input a number value and when I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+      Then I am brought back to the current index page with only the records that meet that threshold shown." do
+        visit "/readers/#{amy.id}/books"
+
+        expect(page).to have_button("Only return book records after _ of year_written")
+        fill_in :year_written, with: 2017
+        click_button("Only return book records after _ of year_written")
+        
+        expect(current_path).to eq("/readers/#{amy.id}/books")
+
+        expect(page).to have_content(plum_creek.title)
+        expect(page).to have_content(deep_work.title)
+        expect(page).to_not have_content(nine.title)
+        expect(page).to_not have_content(gone.title)
+
+      end
+    end
   end

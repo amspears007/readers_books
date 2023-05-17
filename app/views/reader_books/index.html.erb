@@ -15,4 +15,10 @@
     <% end %><br>
     <%= link_to "Index Alphabetically", :sort => "true" %>
 
+  <%=form_with url: "/readers/#{@reader.id}/books", method: :get, local: true do |form| %><br>
+  <%= form.label :year_written %>
+  <%= form.number_field :year_written, step: 1.0 %><br><br>
+  <%= form.submit "Only return book records after _ of year_written" %>
+<% end %>  
+
 

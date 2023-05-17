@@ -6,6 +6,7 @@ RSpec.describe Reader, type: :model do
   let!(:penny) {Reader.create!(name: "Penny", age:8, avid_reader: false, created_at: 3.days.ago)}
   let!(:vivian) {Reader.create!(name: "Vivian", age:5, avid_reader: true)}
 
+  # let!(:bossy) {amy.books.create!(title: "Bossypants", author: "Tina Fay", genre: "autobiographical comedy", year_written: 2020, fiction: false)}
   let!(:plum_creek) {amy.books.create!(title: "On the Banks of Plum Creek", author:"Laura Ingalls Wilder", genre: "children's historical novels", year_written: 1937, fiction: true)}
   let!(:gone) {amy.books.create!(title: "Then She was Gone", author:"Lisa Jewell", genre: "thriller", year_written: 2017, fiction: true)}
   let!(:deep_work) {amy.books.create!(title: "Deep Work", author:"Cal Newport", genre: "self help", year_written: 2016, fiction: false)}
@@ -35,6 +36,13 @@ RSpec.describe Reader, type: :model do
       it "sorts_alphabetically" do
           
           expect(amy.sorts_alphabetically("true")).to eq([deep_work, plum_creek, gone])
+      end
+    end
+
+    describe "Finds threshold" do
+      it "::books_before" do
+
+        expect(amy.books_before(2017)).to eq([ plum_creek, deep_work])
       end
     end
   end
